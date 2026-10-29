@@ -48,14 +48,17 @@ Otwarcie `web/index.html` bezpośrednio z dysku też działa (dane z `offers-dat
 
 ### Publikacja (GitHub Pages)
 Workflow `.github/workflows/pages.yml` publikuje katalog `web/` przy każdym pushu do `main`.
+Pages jest już włączone (`build_type: workflow`), a `actions/configure-pages` ma `enablement: true`, więc nowe repozytorium nie wymaga ręcznej konfiguracji.
+
+- Produkcja: **https://massivedys.github.io/lokaty-i-ko/**
+- Repozytorium: https://github.com/MassiveDys/lokaty-i-ko
 
 ```powershell
 git remote add origin https://github.com/MassiveDys/lokaty-i-ko.git
 git push -u origin main
 ```
 
-Po pierwszym pushu: **Settings → Pages → Source: GitHub Actions** (albo `POST /repos/{owner}/{repo}/pages` z `build_type: workflow`).
-Adres: `https://massivedys.github.io/lokaty-i-ko/`
+Po pushu workflow „Deploy web to GitHub Pages” buduje artefakt z `web/` i publikuje go w 1–2 minuty.
 
 ### Aktualizacja bazy
 1. Wygeneruj/zwaliduj dane: `python tools/update_offers.py --validate --summary`

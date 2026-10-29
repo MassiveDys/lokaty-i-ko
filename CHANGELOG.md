@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2026-10-29] Publikacja GitHub Pages (Coderweb)
+- Wypchnięto repozytorium do `https://github.com/MassiveDys/lokaty-i-ko` (gałąź `main`).
+- Włączono GitHub Pages z `build_type: workflow`; workflow `.github/workflows/pages.yml` buduje katalog `web/`.
+- Deploy zakończony sukcesem; strona **https://massivedys.github.io/lokaty-i-ko/** odpowiada 200 (HTML, CSS, JS, JSON, ikony).
+- Smoke test na wersji produkcyjnej (Chrome headless): 31/31 PASS, 0 błędów konsoli; szerokości 1440/390/360 px bez przewijania poziomego.
+- Dodano `enablement: true` w `actions/configure-pages`, aby Pages włączało się automatycznie przy pierwszym wdrożeniu.
+
 ## [2026-10-29] Zadanie 2 (Coderweb) — frontend web + GitHub Pages
 - Zbudowano aplikację w `web/`: `index.html`, `style.css`, `calc.js`, `app.js` (czysty HTML/CSS/JS, bez frameworków i CDN).
 - Kalkulator zysku netto z podatkiem Belki (19%): kapitalizacja miesięczna dla KO i na koniec dla lokat, limity `max_amount`, minimum `min_amount`, skrócony horyzont.

@@ -1,8 +1,9 @@
 # STATUS - lokaty-i-ko
 
-- **Stan:** w trakcie wdrażania (Zadanie 1, 2 i 3 zakończone sukcesem; trwa publikacja GitHub Pages przez Coderweb)
+- **Stan:** ukończony i opublikowany — aplikacja działa na GitHub Pages
 - **Ostatnia zmiana:** 2026-10-29
-- **Następny krok:** Zakończenie wdrożenia na GitHub Pages i oddanie linku produkcyjnego
+- **Następny krok:** aktualizacja bazy ofert (`data/offers.json` → `web/data/`) i kolejne wdrożenie; ewentualne uwagi po testach użytkownika
+- **Produkcja:** https://massivedys.github.io/lokaty-i-ko/
 
 ## Co działa
 - Kanał projektu, pamięć i instrukcje skonfigurowane
@@ -18,9 +19,13 @@
   - Ocena końcowa: **PASS** (668+ zweryfikowanych asercji, 0 błędów)
   - `tools/qa-suite.mjs` (554 PASS), `tools/test-web.mjs` (83 PASS), `tools/smoke-web.mjs` (31 PASS)
   - Raport: `QA-REPORT.md` i zrzuty ekranu w `D:\openbot\qa\lokaty-i-ko-2026-10-29\`
+- Publikacja:
+  - Repozytorium: https://github.com/MassiveDys/lokaty-i-ko (publiczne, gałąź `main`)
+  - Workflow: `.github/workflows/pages.yml` (build z katalogu `web/`, GitHub Actions)
+  - Strona: **https://massivedys.github.io/lokaty-i-ko/** — HTTP 200, smoke test na produkcji 31/31 PASS, 0 błędów konsoli
 
 ## Stan zadań
 - [x] Zadanie 1 [Coderdata]: Schemat bazy ofert + skrypt aktualizacji/pobierania + plik data/offers.json
 - [x] Zadanie 2 [Coderweb]: Frontend webowy (HTML/CSS/JS) + kalkulator zysku netto + filtry + widok tabeli/kart
 - [x] Zadanie 3 [Codertest]: Niezależna weryfikacja QA (668+ testów PASS, raport QA-REPORT.md)
-- [ ] Publikacja GitHub Pages [Coderweb]: trwa wykonywanie `git push` do repozytorium `MassiveDys/lokaty-i-ko` i konfiguracja GitHub Actions
+- [x] Publikacja GitHub Pages [Coderweb]: `git push` do `MassiveDys/lokaty-i-ko`, Pages włączone (build_type: workflow), deploy zakończony sukcesem, strona odpowiada 200
