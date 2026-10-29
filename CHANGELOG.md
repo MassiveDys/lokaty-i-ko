@@ -1,0 +1,19 @@
+# CHANGELOG
+
+## [2026-10-29] Zadanie 2 (Coderweb) — frontend web + GitHub Pages
+- Zbudowano aplikację w `web/`: `index.html`, `style.css`, `calc.js`, `app.js` (czysty HTML/CSS/JS, bez frameworków i CDN).
+- Kalkulator zysku netto z podatkiem Belki (19%): kapitalizacja miesięczna dla KO i na koniec dla lokat, limity `max_amount`, minimum `min_amount`, skrócony horyzont.
+- Filtry: typ produktu, 4 filtry warunków, wyszukiwanie banku/produktu, 5 trybów sortowania, ranking z pozycjami, widok kart i tabeli.
+- Porównanie 2 ofert w oknie dialogowym (brutto, podatek, netto, wypłata, stopa netto, warunki).
+- Panel bazy: data aktualizacji, liczba ofert i banków, wczytywanie nowego pliku JSON, powrót do bazy domyślnej.
+- PWA/offline: `sw.js`, `manifest.webmanifest`, ikony, baza zapasowa `web/data/offers-data.js`.
+- Tryb jasny/ciemny, zapamiętywanie ustawień w `localStorage`, responsywność 360–1440 px.
+- Dodano testy: `tools/test-web.mjs` (83 asercje) i `tools/smoke-web.mjs` (31 asercji w Chrome headless + zrzuty ekranu) — PASS.
+- Dodano `.github/workflows/pages.yml` (publikacja katalogu `web/` na GitHub Pages) oraz `.gitignore`.
+- Aktualizacja `README.md` o opis wersji web, uruchomienie, testy i publikację.
+
+## [2026-10-29] Zadanie 1 (Coderdata)
+- Utworzono specyfikację formatu bazy ofert: `data/SCHEMA.md`.
+- Przygotowano bazę aktualnych polskich ofert lokat i kont oszczędnościowych: `data/offers.json` (22 oferty z 12 czołowych banków: Nest Bank, VeloBank, Alior, Pekao, Millennium, ING, mBank, Santander, PKO BP, Toyota Bank, BFF Bank, Credit Agricole).
+- Napisano narzędzie `tools/update_offers.py` do walidacji spójności bazy, raportowania statystyk oraz symulacji odsetek netto (podatek Belki).
+- Przeprowadzono pełną walidację (status: PASS).

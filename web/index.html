@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lokaty i Konta Oszczędnościowe — porównywarka i kalkulator zysku netto</title>
+  <meta name="description" content="Porównaj lokaty i konta oszczędnościowe w polskich bankach. Kalkulator zysku netto po podatku Belki (19%), filtry warunków i ranking ofert." />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#oferty">Przejdź do ofert</a>
+
+  <header class="site-head">
+    <div class="wrap head-inner">
+      <a class="brand" href="./" aria-label="Lokaty i KO — strona główna">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19V9" /><path d="M10 19V5" /><path d="M16 19v-7" /><path d="M22 19V3" />
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>Lokaty i KO</strong>
+          <small>porównywarka zysku netto</small>
+        </span>
+      </a>
+
+      <div class="head-actions">
+        <span class="data-pill" id="dataPill" title="Data aktualizacji bazy ofert">
+          <span class="dot" aria-hidden="true"></span>
+          <span id="dataPillText">wczytywanie bazy…</span>
+        </span>
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Przełącz tryb ciemny" title="Tryb ciemny / jasny">
+          <svg class="ico-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4" />
+          </svg>
+          <svg class="ico-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow">Dane z <span id="heroBankCount">12</span> banków · aktualizacja <span id="heroDate">—</span></p>
+          <h1>Ile naprawdę zarobisz na lokacie?</h1>
+          <p class="lead">
+            Wpisz kwotę i horyzont, a policzymy zysk <strong>na czysto</strong> — po podatku Belki,
+            z kapitalizacją miesięczną dla kont oszczędnościowych i limitami kwot promocji.
+          </p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="stat-value" id="statCount">—</span>
+              <span class="stat-label">ofert w bazie</span>
+            </div>
+            <div class="hero-stat">
+              <span class="stat-value" id="statBest">—</span>
+              <span class="stat-label">najwyższa stawka</span>
+            </div>
+            <div class="hero-stat">
+              <span class="stat-value" id="statBanks">—</span>
+              <span class="stat-label">banków</span>
+            </div>
+            <div class="hero-stat">
+              <span class="stat-value" id="statAvg">—</span>
+              <span class="stat-label">średnia stawka</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 260 200" role="presentation">
+            <defs>
+              <linearGradient id="bars" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#4ade80" stop-opacity=".95" />
+                <stop offset="100%" stop-color="#0d9488" stop-opacity=".35" />
+              </linearGradient>
+              <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#4ade80" />
+                <stop offset="100%" stop-color="#a7f3d0" />
+              </linearGradient>
+            </defs>
+            <g stroke="rgba(148,163,184,.18)" stroke-width="1">
+              <path d="M10 170h240M10 130h240M10 90h240M10 50h240" />
+            </g>
+            <g fill="url(#bars)">
+              <rect x="26" y="128" width="26" height="42" rx="6" />
+              <rect x="70" y="106" width="26" height="64" rx="6" />
+              <rect x="114" y="86" width="26" height="84" rx="6" />
+              <rect x="158" y="64" width="26" height="106" rx="6" />
+              <rect x="202" y="36" width="26" height="134" rx="6" opacity=".9" />
+            </g>
+            <path d="M39 118 83 96l44-20 44-22 44-26" fill="none" stroke="url(#line)" stroke-width="3" stroke-linecap="round" />
+            <g fill="#eafff5">
+              <circle cx="39" cy="118" r="4" /><circle cx="83" cy="96" r="4" /><circle cx="127" cy="76" r="4" /><circle cx="171" cy="54" r="4" /><circle cx="215" cy="28" r="4" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap calc-section" aria-labelledby="calcTitle">
+      <div class="calc-card">
+        <div class="calc-head">
+          <h2 id="calcTitle">Kalkulator zysku netto</h2>
+          <p class="hint">Podatek Belki 19% od zysku · kapitalizacja wg warunków oferty</p>
+        </div>
+
+        <div class="calc-grid">
+          <div class="calc-fields">
+            <div class="field">
+              <label for="amount">Kwota do zainwestowania</label>
+              <div class="amount-box">
+                <input id="amount" type="text" inputmode="numeric" autocomplete="off" value="25 000" aria-describedby="amountHint" />
+                <span class="suffix">zł</span>
+              </div>
+              <input id="amountRange" class="range" type="range" min="1000" max="300000" step="1000" value="25000" aria-label="Kwota — suwak" />
+              <div class="chips" id="amountChips" role="group" aria-label="Szybki wybór kwoty">
+                <button type="button" class="chip" data-amount="5000">5 tys.</button>
+                <button type="button" class="chip" data-amount="10000">10 tys.</button>
+                <button type="button" class="chip" data-amount="25000">25 tys.</button>
+                <button type="button" class="chip" data-amount="50000">50 tys.</button>
+                <button type="button" class="chip" data-amount="100000">100 tys.</button>
+                <button type="button" class="chip" data-amount="200000">200 tys.</button>
+              </div>
+              <p class="hint" id="amountHint">Kwota powyżej limitu promocji jest liczona tylko do limitu.</p>
+            </div>
+
+            <div class="field">
+              <span class="field-label" id="horizonLabel">Horyzont</span>
+              <div class="chips" id="horizonChips" role="group" aria-labelledby="horizonLabel">
+                <button type="button" class="chip" data-horizon="3">3 mies.</button>
+                <button type="button" class="chip" data-horizon="6">6 mies.</button>
+                <button type="button" class="chip" data-horizon="12">12 mies.</button>
+                <button type="button" class="chip" data-horizon="24">24 mies.</button>
+              </div>
+              <p class="hint">Dla dłuższego horyzontu liczymy pełny okres oferty (stawka promocyjna zwykle nie trwa dłużej).</p>
+            </div>
+          </div>
+
+          <div class="calc-out" aria-live="polite">
+            <p class="out-label">Najlepszy zysk netto dla Ciebie</p>
+            <p class="out-value" id="topProfit">—</p>
+            <p class="out-offer" id="topOffer">—</p>
+            <dl class="out-meta">
+              <div><dt>Kwota</dt><dd id="outAmount">—</dd></div>
+              <div><dt>Horyzont</dt><dd id="outHorizon">—</dd></div>
+              <div><dt>Podatek Belki</dt><dd id="outTax">—</dd></div>
+            </dl>
+            <p class="out-note" id="outNote">Zysk netto = odsetki brutto − 19% podatku.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap filters" id="oferty" aria-labelledby="offersTitle">
+      <div class="filters-top">
+        <div>
+          <h2 id="offersTitle">Ranking ofert</h2>
+          <p class="hint" id="resultSummary">—</p>
+        </div>
+        <div class="view-toggle" role="group" aria-label="Widok wyników">
+          <button type="button" class="seg is-active" data-view="cards" aria-pressed="true">Karty</button>
+          <button type="button" class="seg" data-view="table" aria-pressed="false">Tabela</button>
+        </div>
+      </div>
+
+      <div class="filters-bar">
+        <div class="segmented" id="typeFilter" role="group" aria-label="Typ produktu">
+          <button type="button" class="seg is-active" data-type="all" aria-pressed="true">Wszystko <span class="seg-count" data-count="all">0</span></button>
+          <button type="button" class="seg" data-type="lokata" aria-pressed="false">Lokaty <span class="seg-count" data-count="lokata">0</span></button>
+          <button type="button" class="seg" data-type="konto_oszczednosciowe" aria-pressed="false">Konta oszcz. <span class="seg-count" data-count="konto_oszczednosciowe">0</span></button>
+        </div>
+
+        <div class="search">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+          </svg>
+          <input id="search" type="search" placeholder="Bank lub nazwa produktu" aria-label="Szukaj banku lub produktu" autocomplete="off" />
+        </div>
+
+        <label class="select-wrap">
+          <span>Sortuj</span>
+          <select id="sort">
+            <option value="profit">wg zysku netto (zł)</option>
+            <option value="annual">wg stopy netto (% w skali roku)</option>
+            <option value="rate">wg stawki brutto (% p.a.)</option>
+            <option value="max">wg maks. kwoty</option>
+            <option value="period">wg okresu</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="condition-row" role="group" aria-label="Filtry warunków">
+        <label class="check"><input type="checkbox" data-cond="noAccount" /> <span>Bez nowego konta</span></label>
+        <label class="check"><input type="checkbox" data-cond="existing" /> <span>Dla obecnych klientów</span></label>
+        <label class="check"><input type="checkbox" data-cond="noNewFunds" /> <span>Bez nowych środków</span></label>
+        <label class="check"><input type="checkbox" data-cond="noActivity" /> <span>Bez wymogu aktywności</span></label>
+        <button type="button" class="link-btn" id="resetFilters">Wyczyść filtry</button>
+      </div>
+
+      <p class="excluded-note" id="excludedNote" hidden></p>
+
+      <div id="cards" class="cards" aria-live="polite"></div>
+
+      <div id="tableWrap" class="table-wrap" hidden>
+        <table class="offers-table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Bank / produkt</th>
+              <th scope="col">Stawka</th>
+              <th scope="col">Okres</th>
+              <th scope="col" class="num">Zysk netto</th>
+              <th scope="col" class="num">Limit</th>
+              <th scope="col">Warunki</th>
+              <th scope="col"><span class="sr-only">Link</span></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="empty" id="emptyState" hidden>
+        <p class="empty-title">Brak ofert spełniających kryteria</p>
+        <p class="hint">Zwiększ kwotę, wydłuż horyzont lub poluzuj filtry warunków.</p>
+        <button type="button" class="btn btn-ghost" id="emptyReset">Wyczyść filtry</button>
+      </div>
+    </section>
+
+    <section class="wrap data-section" aria-labelledby="dataTitle">
+      <div class="data-card">
+        <div class="data-copy">
+          <h2 id="dataTitle">Baza ofert</h2>
+          <p class="hint" id="dataInfo">—</p>
+          <p class="hint">
+            Strona działa też offline (PWA). Możesz wczytać nowszy plik <code>offers.json</code> wygenerowany
+            skryptem <code>tools/update_offers.py</code> — dane zostaną użyte tylko w Twojej przeglądarce.
+          </p>
+        </div>
+        <div class="data-actions">
+          <label class="btn btn-primary" for="fileInput">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 16V4M7 9l5-5 5 5" /><path d="M4 20h16" />
+            </svg>
+            Wczytaj plik JSON
+          </label>
+          <input id="fileInput" type="file" accept="application/json,.json" hidden />
+          <button type="button" class="btn btn-ghost" id="restoreData" hidden>Przywróć bazę domyślną</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p>
+        <strong>Lokaty i KO</strong> — porównywarka edukacyjna. Oprocentowanie i warunki zmieniają się;
+        przed założeniem produktu sprawdź regulamin na stronie banku.
+      </p>
+      <p class="hint">Zysk netto liczony z podatkiem Belki 19%. Nie jest to oferta handlowa ani porada inwestycyjna.</p>
+    </div>
+  </footer>
+
+  <div class="compare-bar" id="compareBar" hidden>
+    <div class="compare-inner wrap">
+      <div class="compare-chips" id="compareChips"></div>
+      <div class="compare-actions">
+        <button type="button" class="btn btn-ghost" id="compareClear">Wyczyść</button>
+        <button type="button" class="btn btn-primary" id="compareOpen" disabled>Porównaj 2 oferty</button>
+      </div>
+    </div>
+  </div>
+
+  <dialog id="compareDialog" class="dialog" aria-labelledby="compareTitle">
+    <div class="dialog-head">
+      <h2 id="compareTitle">Porównanie ofert</h2>
+      <button type="button" class="icon-btn" id="compareClose" aria-label="Zamknij porównanie">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+    <div class="dialog-body" id="compareBody"></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="data/offers-data.js"></script>
+  <script src="calc.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

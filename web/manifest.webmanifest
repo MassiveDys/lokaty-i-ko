@@ -1,0 +1,27 @@
+{
+  "name": "Lokaty i KO — kalkulator zysku netto",
+  "short_name": "Lokaty i KO",
+  "description": "Porównywarka lokat i kont oszczędnościowych z kalkulatorem zysku netto po podatku Belki.",
+  "lang": "pl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f3f5fa",
+  "theme_color": "#0b1220",
+  "categories": ["finance", "productivity"],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

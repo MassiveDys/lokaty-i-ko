@@ -1,0 +1,15 @@
+# pliki budowania i cache
+builds/
+__pycache__/
+*.pyc
+*.pyo
+node_modules/
+
+# dane lokalne / testowe
+*.log
+test-offers.json
+
+# systemowe
+Thumbs.db
+.DS_Store
+desktop.ini
