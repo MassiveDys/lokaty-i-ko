@@ -2,7 +2,7 @@
    - pliki statyczne: cache-first,
    - data/offers.json: network-first (świeże dane, offline z cache),
    - nawigacja: cache fallback do index.html. */
-const CACHE = "lokaty-i-ko-v1";
+const CACHE = "lokaty-i-ko-v2";
 const ASSETS = [
   "./",
   "./index.html",

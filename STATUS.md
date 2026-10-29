@@ -1,16 +1,16 @@
 # STATUS - lokaty-i-ko
 
-- **Stan:** w trakcie poprawek (Zgłoszenie użytkownika: linki do ofert zwracają 404; trwa naprawa URL-i przez Coderdata)
+- **Stan:** w trakcie wdrażania poprawek (Linki 404 naprawione przez Coderdata; trwa push i deploy na GitHub Pages przez Coderweb)
 - **Ostatnia zmiana:** 2026-10-29
-- **Następny krok:** Coderdata poprawia linki w bazie, Coderweb aktualizuje frontend i wdraża na GitHub Pages
+- **Następny krok:** Potwierdzenie aktualizacji produkcji przez Coderweb
 
 ## Co działa
 - Produkcyjna strona na GitHub Pages: https://massivedys.github.io/lokaty-i-ko/
-- Baza 22 ofert lokat i KO
-- Pełny kalkulator finansowy netto (Belka 19%), filtry, ranking, porównanie A/B, PWA/offline
-- Testy QA (Codertest): PASS (668+ asercji)
+- Baza 22 ofert lokat i KO – wszystkie 22 adresy URL zweryfikowane ze statusem HTTP 200 (brak 404)
+- Skrypt walidacji `tools/update_offers.py --check-urls` (PASS 22/22)
+- Testy jednostkowe i integracyjne: PASS (668+ asercji)
+- PWA/offline, kalkulator zysków netto Belka 19%, filtry i ranking
 
-## Otwarte poprawki
-- [ ] Poprawa adresów URL w `data/offers.json`: wykryto błędy 404 m.in. w Nest Bank, ING, mBank, VeloBank, Millennium, PKO BP
-- [ ] Aktualizacja `web/data/offers.json` i `web/data/offers-data.js`
-- [ ] Re-deploy na GitHub Pages
+## Stan zadań
+- [x] Naprawa linków [Coderdata]: commit `d15d36c`, 22/22 adresy URL z kodem 200
+- [ ] Deploy na GitHub Pages [Coderweb]: push na `origin main` i weryfikacja produkcji
