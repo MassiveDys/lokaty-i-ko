@@ -1,4 +1,3 @@
-/* Kopia zapasowa bazy ofert dla trybu offline i pliku:// (generowana z data/offers.json). */
 window.LK_OFFERS_SEED = {
   "version": "1.0.0",
   "last_updated": "2026-10-29",
@@ -22,7 +21,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": true,
         "details": "Dla nowych klientów w ciągu 30 dni od otwarcia Nest Konta; wymagany wpływ min. 2000 zł i 3 transakcje/m-c."
       },
-      "url": "https://nestbank.pl/osoby-prywatne/oszczednosci/nest-lokata-witaj",
+      "url": "https://nestbank.pl/nest-lokata-witaj/",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -43,7 +42,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": false,
         "details": "Dla nowych klientów; brak wymogu aktywności transakcyjnej dla wariantu 3-miesięcznego."
       },
-      "url": "https://nestbank.pl/osoby-prywatne/oszczednosci/nest-lokata-witaj",
+      "url": "https://nestbank.pl/nest-lokata-witaj/",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -52,7 +51,7 @@ window.LK_OFFERS_SEED = {
       "bank": "VeloBank",
       "name": "Elastyczne Konto Oszczędnościowe (Nowe Środki)",
       "type": "konto_oszczednosciowe",
-      "rate": 7,
+      "rate": 7.0,
       "period_months": 3,
       "min_amount": 1,
       "max_amount": 100000,
@@ -64,7 +63,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": false,
         "details": "Promocyjne oprocentowanie przez 92 dni dla nowych środków; comiesięczna kapitalizacja odsetek."
       },
-      "url": "https://www.velobank.pl/klienci-indywidualni/oszczednosci/elastyczne-konto-oszczednosciowe.html",
+      "url": "https://www.velobank.pl/klienci-indywidualni/oszczednosci/konto-oszczednosciowe.html",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -94,7 +93,7 @@ window.LK_OFFERS_SEED = {
       "bank": "Alior Bank",
       "name": "Konto Mega Oszczędnościowe (Bonus)",
       "type": "konto_oszczednosciowe",
-      "rate": 7,
+      "rate": 7.0,
       "period_months": 3,
       "min_amount": 1,
       "max_amount": 50000,
@@ -148,7 +147,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": false,
         "details": "Lokata na 6 miesięcy na nowe środki; brak górnego limitu kwoty wkładu."
       },
-      "url": "https://www.bankmillennium.pl/klienci-indywidualni/produkty-oszczednosciowe/lokaty-terminowe/lokata-horyzont-zysku",
+      "url": "https://www.bankmillennium.pl/klienci-indywidualni/produkty-oszczednosciowe/lokaty/lokata-na-nowe-srodki",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -157,7 +156,7 @@ window.LK_OFFERS_SEED = {
       "bank": "Bank Pekao",
       "name": "Konto Oszczędnościowe z Żubrem",
       "type": "konto_oszczednosciowe",
-      "rate": 7,
+      "rate": 7.0,
       "period_months": 5,
       "min_amount": 1,
       "max_amount": 100000,
@@ -169,7 +168,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": false,
         "details": "Promocyjne oprocentowanie przez 152 dni (ok. 5 miesięcy) dla nowych klientów otwierających Konto Przekorzystne."
       },
-      "url": "https://www.pekao.com.pl/klient-indywidualny/oszczedzaj-i-inwestuj/rachunki-oszczednosciowe/konto-oszczednosciowe.html",
+      "url": "https://www.pekao.com.pl/klient-indywidualny/oszczedzam-i-inwestuje/programy-oszczednosciowe/KO-promocja.html",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -190,7 +189,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": false,
         "details": "Roczna lokata z comiesięczną wypłatą odsetek na rachunek bieżący."
       },
-      "url": "https://www.pekao.com.pl/klient-indywidualny/oszczedzaj-i-inwestuj/lokaty-terminowe.html",
+      "url": "https://www.pekao.com.pl/klient-indywidualny/oszczedzam-i-inwestuje/lokata-rentierska.html",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -199,7 +198,7 @@ window.LK_OFFERS_SEED = {
       "bank": "ING Bank Śląski",
       "name": "Otwarte Konto Oszczędnościowe Bonus",
       "type": "konto_oszczednosciowe",
-      "rate": 6,
+      "rate": 6.0,
       "period_months": 3,
       "min_amount": 1,
       "max_amount": 200000,
@@ -211,7 +210,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": false,
         "details": "Podwyższone oprocentowanie przez 3 miesiące na nowe środki do kwoty 200 000 zł."
       },
-      "url": "https://www.ing.pl/indywidualni/oszczednosci-i-inwestycje/konta-oszczednosciowe/otwarte-konto-oszczednosciowe",
+      "url": "https://www.ing.pl/indywidualni/inwestycje-i-oszczednosci/konto-oszczednosciowe",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -220,7 +219,7 @@ window.LK_OFFERS_SEED = {
       "bank": "ING Bank Śląski",
       "name": "Lokata Plus (3M)",
       "type": "lokata",
-      "rate": 5,
+      "rate": 5.0,
       "period_months": 3,
       "min_amount": 1000,
       "max_amount": 100000,
@@ -232,7 +231,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": false,
         "details": "Stałe oprocentowanie na 3 miesiące dla obecnych i nowych posiadaczy rachunku w ING."
       },
-      "url": "https://www.ing.pl/indywidualni/oszczednosci-i-inwestycje/lokaty/lokata-plus",
+      "url": "https://www.ing.pl/indywidualni/inwestycje-i-oszczednosci/lokata-terminowa",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -253,7 +252,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": true,
         "details": "Dla nowych klientów; warunek odłożenia min. 100 zł miesięcznie z automatycznych końcówek transakcji."
       },
-      "url": "https://www.mbank.pl/indywidualny/oszczednosci/konta-oszczednosciowe/moje-cele/",
+      "url": "https://www.mbank.pl/indywidualny/aplikacja-i-serwis/produkty/cele/",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -274,7 +273,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": false,
         "details": "Lokata 6-miesięczna dla nowych środków wpłaconych do banku."
       },
-      "url": "https://www.mbank.pl/indywidualny/oszczednosci/lokaty/lokata-na-nowe-srodki/",
+      "url": "https://www.mbank.pl/indywidualny/inwestycje-i-oszczednosci/lokaty/",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -283,7 +282,7 @@ window.LK_OFFERS_SEED = {
       "bank": "Santander Bank Polska",
       "name": "Konto Multi Oszczędnościowe",
       "type": "konto_oszczednosciowe",
-      "rate": 6,
+      "rate": 6.0,
       "period_months": 3,
       "min_amount": 1,
       "max_amount": 100000,
@@ -325,7 +324,7 @@ window.LK_OFFERS_SEED = {
       "bank": "PKO Bank Polski",
       "name": "Pierwsze Konto Oszczędnościowe",
       "type": "konto_oszczednosciowe",
-      "rate": 6,
+      "rate": 6.0,
       "period_months": 12,
       "min_amount": 1,
       "max_amount": 10000,
@@ -337,7 +336,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": true,
         "details": "Oprocentowanie bonusowe przy regularnych miesięcznych wpłatach od 20 zł do 1000 zł."
       },
-      "url": "https://www.pkobp.pl/klienci-indywidualni/oszczednosci/konta-oszczednosciowe/pierwsze-konto-oszczednosciowe/",
+      "url": "https://www.pkobp.pl/klient-indywidualny/konta/konto-oszczednosciowe-dla-dziecka",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -358,7 +357,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": false,
         "details": "Dla nowych środków deponowanych w PKO BP; brak górnego limitu kwoty."
       },
-      "url": "https://www.pkobp.pl/klienci-indywidualni/oszczednosci/lokaty/lokata-na-nowe-srodki/",
+      "url": "https://www.pkobp.pl/klient-indywidualny/oszczedzanie-inwestycje/lokata-na-nowe-srodki",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -379,7 +378,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": false,
         "details": "Bez konieczności posiadania konta osobistego i bez warunku nowych środków; wysoki limit 400 tys. zł."
       },
-      "url": "https://www.toyotabank.pl/dla-ciebie/oszczednosci/lokata-sprint",
+      "url": "https://www.toyotabank.pl/lokata-sprint",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -400,7 +399,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": false,
         "details": "Oprocentowanie zmienne powiązane ze stawką referencyjną WIBOR 3M."
       },
-      "url": "https://www.toyotabank.pl/dla-ciebie/oszczednosci/indeksowane-konto-oszczednosciowe",
+      "url": "https://www.toyotabank.pl/indeksowane-konto-oszczednosciowe",
       "updated_at": "2026-10-29",
       "status": "active"
     },
@@ -409,7 +408,7 @@ window.LK_OFFERS_SEED = {
       "bank": "BFF Bank",
       "name": "Lokata Facto (3M)",
       "type": "lokata",
-      "rate": 6,
+      "rate": 6.0,
       "period_months": 3,
       "min_amount": 5000,
       "max_amount": null,
@@ -463,7 +462,7 @@ window.LK_OFFERS_SEED = {
         "activity_required": true,
         "details": "Dla nowych klientów z Kontem dla Ciebie; wymagane min. 5 płatności kartą lub BLIK w miesiącu."
       },
-      "url": "https://www.credit-agricole.pl/klienci-indywidualni/oszczednosci-i-inwestycje/rachunek-oszczedzam",
+      "url": "https://www.credit-agricole.pl/klienci-indywidualni/oszczednosci/rachunek-oszczedzam-plus",
       "updated_at": "2026-10-29",
       "status": "active"
     }

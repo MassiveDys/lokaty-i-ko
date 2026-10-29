@@ -8,6 +8,8 @@ import sys
 import os
 import json
 import re
+import urllib.request
+import ssl
 from datetime import datetime
 from typing import Dict, Any, List, Tuple
 
@@ -59,7 +61,7 @@ SAMPLE_OFFERS = [
             "activity_required": True,
             "details": "Dla nowych klientów w ciągu 30 dni od otwarcia Nest Konta; wymagany wpływ min. 2000 zł i 3 transakcje/m-c."
         },
-        "url": "https://nestbank.pl/osoby-prywatne/oszczednosci/nest-lokata-witaj",
+        "url": "https://nestbank.pl/nest-lokata-witaj/",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -80,7 +82,7 @@ SAMPLE_OFFERS = [
             "activity_required": False,
             "details": "Dla nowych klientów; brak wymogu aktywności transakcyjnej dla wariantu 3-miesięcznego."
         },
-        "url": "https://nestbank.pl/osoby-prywatne/oszczednosci/nest-lokata-witaj",
+        "url": "https://nestbank.pl/nest-lokata-witaj/",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -101,7 +103,7 @@ SAMPLE_OFFERS = [
             "activity_required": False,
             "details": "Promocyjne oprocentowanie przez 92 dni dla nowych środków; comiesięczna kapitalizacja odsetek."
         },
-        "url": "https://www.velobank.pl/klienci-indywidualni/oszczednosci/elastyczne-konto-oszczednosciowe.html",
+        "url": "https://www.velobank.pl/klienci-indywidualni/oszczednosci/konto-oszczednosciowe.html",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -185,7 +187,7 @@ SAMPLE_OFFERS = [
             "activity_required": False,
             "details": "Lokata na 6 miesięcy na nowe środki; brak górnego limitu kwoty wkładu."
         },
-        "url": "https://www.bankmillennium.pl/klienci-indywidualni/produkty-oszczednosciowe/lokaty-terminowe/lokata-horyzont-zysku",
+        "url": "https://www.bankmillennium.pl/klienci-indywidualni/produkty-oszczednosciowe/lokaty/lokata-na-nowe-srodki",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -206,7 +208,7 @@ SAMPLE_OFFERS = [
             "activity_required": False,
             "details": "Promocyjne oprocentowanie przez 152 dni (ok. 5 miesięcy) dla nowych klientów otwierających Konto Przekorzystne."
         },
-        "url": "https://www.pekao.com.pl/klient-indywidualny/oszczedzaj-i-inwestuj/rachunki-oszczednosciowe/konto-oszczednosciowe.html",
+        "url": "https://www.pekao.com.pl/klient-indywidualny/oszczedzam-i-inwestuje/programy-oszczednosciowe/KO-promocja.html",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -227,7 +229,7 @@ SAMPLE_OFFERS = [
             "activity_required": False,
             "details": "Roczna lokata z comiesięczną wypłatą odsetek na rachunek bieżący."
         },
-        "url": "https://www.pekao.com.pl/klient-indywidualny/oszczedzaj-i-inwestuj/lokaty-terminowe.html",
+        "url": "https://www.pekao.com.pl/klient-indywidualny/oszczedzam-i-inwestuje/lokata-rentierska.html",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -248,7 +250,7 @@ SAMPLE_OFFERS = [
             "activity_required": False,
             "details": "Podwyższone oprocentowanie przez 3 miesiące na nowe środki do kwoty 200 000 zł."
         },
-        "url": "https://www.ing.pl/indywidualni/oszczednosci-i-inwestycje/konta-oszczednosciowe/otwarte-konto-oszczednosciowe",
+        "url": "https://www.ing.pl/indywidualni/inwestycje-i-oszczednosci/konto-oszczednosciowe",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -269,7 +271,7 @@ SAMPLE_OFFERS = [
             "activity_required": False,
             "details": "Stałe oprocentowanie na 3 miesiące dla obecnych i nowych posiadaczy rachunku w ING."
         },
-        "url": "https://www.ing.pl/indywidualni/oszczednosci-i-inwestycje/lokaty/lokata-plus",
+        "url": "https://www.ing.pl/indywidualni/inwestycje-i-oszczednosci/lokata-terminowa",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -290,7 +292,7 @@ SAMPLE_OFFERS = [
             "activity_required": True,
             "details": "Dla nowych klientów; warunek odłożenia min. 100 zł miesięcznie z automatycznych końcówek transakcji."
         },
-        "url": "https://www.mbank.pl/indywidualny/oszczednosci/konta-oszczednosciowe/moje-cele/",
+        "url": "https://www.mbank.pl/indywidualny/aplikacja-i-serwis/produkty/cele/",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -311,7 +313,7 @@ SAMPLE_OFFERS = [
             "activity_required": False,
             "details": "Lokata 6-miesięczna dla nowych środków wpłaconych do banku."
         },
-        "url": "https://www.mbank.pl/indywidualny/oszczednosci/lokaty/lokata-na-nowe-srodki/",
+        "url": "https://www.mbank.pl/indywidualny/inwestycje-i-oszczednosci/lokaty/",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -374,7 +376,7 @@ SAMPLE_OFFERS = [
             "activity_required": True,
             "details": "Oprocentowanie bonusowe przy regularnych miesięcznych wpłatach od 20 zł do 1000 zł."
         },
-        "url": "https://www.pkobp.pl/klienci-indywidualni/oszczednosci/konta-oszczednosciowe/pierwsze-konto-oszczednosciowe/",
+        "url": "https://www.pkobp.pl/klient-indywidualny/konta/konto-oszczednosciowe-dla-dziecka",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -395,7 +397,7 @@ SAMPLE_OFFERS = [
             "activity_required": False,
             "details": "Dla nowych środków deponowanych w PKO BP; brak górnego limitu kwoty."
         },
-        "url": "https://www.pkobp.pl/klienci-indywidualni/oszczednosci/lokaty/lokata-na-nowe-srodki/",
+        "url": "https://www.pkobp.pl/klient-indywidualny/oszczedzanie-inwestycje/lokata-na-nowe-srodki",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -416,7 +418,7 @@ SAMPLE_OFFERS = [
             "activity_required": False,
             "details": "Bez konieczności posiadania konta osobistego i bez warunku nowych środków; wysoki limit 400 tys. zł."
         },
-        "url": "https://www.toyotabank.pl/dla-ciebie/oszczednosci/lokata-sprint",
+        "url": "https://www.toyotabank.pl/lokata-sprint",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -437,7 +439,7 @@ SAMPLE_OFFERS = [
             "activity_required": False,
             "details": "Oprocentowanie zmienne powiązane ze stawką referencyjną WIBOR 3M."
         },
-        "url": "https://www.toyotabank.pl/dla-ciebie/oszczednosci/indeksowane-konto-oszczednosciowe",
+        "url": "https://www.toyotabank.pl/indeksowane-konto-oszczednosciowe",
         "updated_at": "2026-10-29",
         "status": "active"
     },
@@ -500,7 +502,7 @@ SAMPLE_OFFERS = [
             "activity_required": True,
             "details": "Dla nowych klientów z Kontem dla Ciebie; wymagane min. 5 płatności kartą lub BLIK w miesiącu."
         },
-        "url": "https://www.credit-agricole.pl/klienci-indywidualni/oszczednosci-i-inwestycje/rachunek-oszczedzam",
+        "url": "https://www.credit-agricole.pl/klienci-indywidualni/oszczednosci/rachunek-oszczedzam-plus",
         "updated_at": "2026-10-29",
         "status": "active"
     }
@@ -592,10 +594,78 @@ def validate_database(filepath: str = DATA_PATH) -> Tuple[bool, List[str], Dict[
     return len(errors) == 0, errors, data
 
 
+def check_urls(filepath: str = DATA_PATH) -> Tuple[bool, List[Dict[str, Any]]]:
+    """
+    Weryfikuje dostępność HTTP adresów URL w bazie ofert (sprawdza czy zwracają kod 200).
+    """
+    if not os.path.isfile(filepath):
+        print(f"Błąd: plik bazy nie istnieje: {filepath}")
+        return False, []
+
+    with open(filepath, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    offers = data.get("offers", [])
+    ctx = ssl._create_unverified_context()
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+    }
+
+    results = []
+    all_ok = True
+
+    print("=" * 75)
+    print("WERYFIKACJA DOSTĘPNOŚCI ADRESÓW URL OFERT (HTTP STATUS CHECK)")
+    print("=" * 75)
+
+    for idx, o in enumerate(offers, 1):
+        oid = o.get("id", f"oferta-{idx}")
+        url = o.get("url", "")
+        if not url:
+            print(f"[{idx:02d}/22] [BRAK URL] {oid}")
+            results.append({"id": oid, "url": "", "status": 0, "ok": False, "error": "Brak URL"})
+            all_ok = False
+            continue
+
+        try:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, context=ctx, timeout=8) as r:
+                final_url = r.geturl()
+                status = r.status
+                is_404_redirect = "404" in final_url and "404" not in url
+                if is_404_redirect:
+                    print(f"[{idx:02d}/22] [FAIL] {oid} -> przekierowano do 404 ({final_url})")
+                    results.append({"id": oid, "url": url, "status": 404, "final_url": final_url, "ok": False, "error": "Redirected to 404"})
+                    all_ok = False
+                elif status == 200:
+                    print(f"[{idx:02d}/22] [PASS 200] {oid} -> {url}")
+                    results.append({"id": oid, "url": url, "status": 200, "final_url": final_url, "ok": True, "error": None})
+                else:
+                    print(f"[{idx:02d}/22] [HTTP {status}] {oid} -> {url}")
+                    results.append({"id": oid, "url": url, "status": status, "final_url": final_url, "ok": False, "error": f"Status {status}"})
+                    all_ok = False
+        except urllib.error.HTTPError as e:
+            print(f"[{idx:02d}/22] [FAIL HTTP {e.code}] {oid} -> {url}")
+            results.append({"id": oid, "url": url, "status": e.code, "ok": False, "error": str(e)})
+            all_ok = False
+        except Exception as e:
+            print(f"[{idx:02d}/22] [ERROR] {oid} -> {e} ({url})")
+            results.append({"id": oid, "url": url, "status": 0, "ok": False, "error": str(e)})
+            all_ok = False
+
+    passed_count = sum(1 for r in results if r["ok"])
+    print("=" * 75)
+    print(f"Podsumowanie weryfikacji linków: {passed_count}/{len(offers)} poprawnych (HTTP 200).")
+    if all_ok:
+        print("[SUKCES] Wszystkie linki w bazie działają poprawnie (0 błędów 404).")
+    else:
+        print(f"[UWAGA] Wykryto {len(offers) - passed_count} niedziałających linków.")
+    print("=" * 75)
+
+    return all_ok, results
+
+
 def calculate_profit(amount: float, rate_pa: float, period_months: float, capitalization: str) -> Dict[str, float]:
-    """
-    Oblicza zysk brutto, podatek Belki (19%) oraz zysk netto.
-    """
     tax_rate = 0.19
 
     if capitalization == "at_maturity":
@@ -670,7 +740,6 @@ def print_summary(data: Dict[str, Any]):
     print("-" * 65)
     print(f"{'Bank':<25} | {'Typ':<10} | {'Stawka':<7} | {'Okres':<6} | {'Nazwa'}")
     print("-" * 65)
-    # Sortuj wg oprocentowania malejąco
     sorted_offers = sorted(offers, key=lambda x: x.get("rate", 0), reverse=True)
     for o in sorted_offers:
         typ_short = "Lokata" if o.get("type") == "lokata" else "Konto Oszcz."
@@ -699,13 +768,13 @@ def main():
     parser = argparse.ArgumentParser(description="Walidacja i obsługa bazy ofert lokat i KO")
     parser.add_argument("--init", action="store_true", help="Utwórz lub zresetuj bazę danymi początkowymi")
     parser.add_argument("--validate", action="store_true", help="Zweryfikuj poprawność struktury data/offers.json")
+    parser.add_argument("--check-urls", action="store_true", help="Zweryfikuj dostępność HTTP adresów URL w bazie ofert")
     parser.add_argument("--summary", action="store_true", help="Wyświetl podsumowanie statystyk bazy ofert")
     parser.add_argument("--calc", nargs=3, metavar=("KWOTA", "RATE", "MONTHS"),
                         help="Przelicz przykładowy zysk netto (np. --calc 50000 7.0 3)")
     args = parser.parse_args()
 
-    # Jeśli nie podano argumentów, domyślnie zainicjuj (jeśli brak) i zwaliduj
-    if not (args.init or args.validate or args.summary or args.calc):
+    if not (args.init or args.validate or args.check_urls or args.summary or args.calc):
         if not os.path.exists(DATA_PATH):
             save_initial_database()
         args.validate = True
@@ -722,6 +791,11 @@ def main():
             print(f"[BLAD] Znaleziono {len(errors)} bledow w bazie ofert:")
             for e in errors:
                 print(f"  - {e}")
+            sys.exit(1)
+
+    if args.check_urls:
+        ok, _ = check_urls()
+        if not ok:
             sys.exit(1)
 
     if args.summary:
